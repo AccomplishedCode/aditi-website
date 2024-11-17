@@ -88,7 +88,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6 }}
             className="bg-[#E8E4E1] rounded-lg overflow-hidden shadow-sm"
           >
-            <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
+            <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY || ''}>
               <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 center={location}
