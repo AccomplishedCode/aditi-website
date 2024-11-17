@@ -108,12 +108,24 @@ const serviceCategories: ServiceCategory[] = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-20 bg-[#E8E4E1]">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="services" className="py-20 bg-[#E8E4E1] relative overflow-hidden">
+      <motion.div
+        className="absolute inset-0 opacity-5"
+        initial={{ rotate: 0 }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+        style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, #4A8C7D 2px, transparent 0)',
+          backgroundSize: '40px 40px',
+        }}
+      />
+
+      <div className="max-w-6xl mx-auto px-4 relative">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-light mb-6 text-[#4A8C7D]">
@@ -128,24 +140,49 @@ export default function ServicesSection() {
           {serviceCategories.map((category, index) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+              }}
+              className="bg-white rounded-lg p-6 shadow-sm transition-all duration-300 flex flex-col h-full"
             >
               <div className="flex items-center mb-4">
-                <category.icon className="w-6 h-6 text-[#4A8C7D] mr-3 stroke-2" />
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <category.icon className="w-6 h-6 text-[#4A8C7D] mr-3 stroke-2" />
+                </motion.div>
                 <h3 className="text-xl font-medium text-[#4A8C7D]">{category.title}</h3>
               </div>
               <p className="text-[#847C77] mb-4">{category.description}</p>
-              <ul className="space-y-3">
-                {category.services.map((service) => (
+              <ul className="space-y-3 flex-grow">
+                {category.services.map((service, serviceIndex) => (
                   <motion.li
                     key={service.name}
-                    whileHover={{ x: 4 }}
-                    className="flex items-start"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.3, 
+                      delay: index * 0.1 + serviceIndex * 0.1 
+                    }}
+                    whileHover={{ 
+                      x: 8,
+                      transition: { type: "spring", stiffness: 400 }
+                    }}
+                    className="flex items-start group"
                   >
-                    <HeartPulse className="w-5 h-5 text-[#9CAF98] mt-1 mr-2" />
+                    <motion.div
+                      whileHover={{ scale: 1.2 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      <HeartPulse className="w-5 h-5 text-[#9CAF98] mt-1 mr-2 group-hover:text-[#4A8C7D] transition-colors" />
+                    </motion.div>
                     <div>
                       <h4 className="text-[#4A8C7D] font-medium">{service.name}</h4>
                       <p className="text-sm text-[#847C77]">{service.description}</p>
