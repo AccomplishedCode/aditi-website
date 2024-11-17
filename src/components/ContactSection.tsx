@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Clock, Phone } from 'lucide-react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-const GOOGLE_MAPS_API_KEY = 'AIzaSyAUhrZCN5PcWXFm-oeYJ5hWDRV439GxVhY'; // You'll need to add your Google Maps API key
+const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 const location = { lat: -27.4977, lng: 153.0457 }; // Stones Corner coordinates
 
 export default function ContactSection() {
