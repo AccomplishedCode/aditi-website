@@ -52,7 +52,7 @@ export default function AppointmentSheet({ triggerClassName, children }: Appoint
           {children}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-full sm:max-w-[540px]">
+      <SheetContent className="w-full sm:max-w-[540px] overflow-y-auto max-h-[100dvh] pb-6">
         <SheetHeader>
           <SheetTitle className="text-2xl font-light text-[#4A8C7D]">
             {steps[step].title}

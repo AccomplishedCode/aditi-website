@@ -26,18 +26,13 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="relative h-[500px] group"
           >
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Image
-                src="/profile-picture.png"
-                alt="Adi Singhal - Mental Health Counsellor"
-                fill
-                className="object-cover rounded-lg shadow-md"
-                priority
-              />
-            </motion.div>
+            <Image
+              src="/profile-picture.png"
+              alt="Adi Singhal - Mental Health Counsellor"
+              fill
+              className="object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-[1.02]"
+              priority
+            />
             <motion.div
               className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#4A8C7D]/10 rounded-full -z-10"
               initial={{ scale: 0.8 }}
